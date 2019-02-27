@@ -4,6 +4,10 @@
 import cv2
 import os
 
+from pydub import AudioSegment
+from pydub.playback import play
+song = AudioSegment.from_wav("/home/pi/Downloads/dan.wav")
+
 cap = cv2.VideoCapture(0)
 
 a = 0
@@ -34,7 +38,7 @@ while(True):
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
         if a == 0:
             print('Playing audio')
-            os.system("aplay /home/pi/Downloads/Danger.mp3")
+            play(song)
             a = 1
             
 
