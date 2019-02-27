@@ -2,8 +2,11 @@
 # Tested with OpenCV3
 
 import cv2
+import os
 
 cap = cv2.VideoCapture(0)
+
+a = 0
 
 # Create the haar cascade
 faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
@@ -29,8 +32,11 @@ while(True):
     # Draw a rectangle around the faces
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
-        print('REEE')
-
+        if a == 0:
+            print('Playing audio')
+            os.system("aplay /home/pi/Downloads/Danger.mp3")
+            a = 1
+            
 
     # Display the resulting frame
     cv2.imshow('frame', frame)
